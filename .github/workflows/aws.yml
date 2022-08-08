@@ -29,4 +29,3 @@ jobs:
       id: run-awscli
       run: |
         aws s3 ls
-	echo "HELLO MIKE"
