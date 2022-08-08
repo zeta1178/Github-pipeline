@@ -28,5 +28,5 @@ jobs:
     - name: Run AWS CLI
       id: run-awscli
       run: |
-        echo "HELLO MIKE"
-	aws s3 ls
+        aws s3 ls
+	echo "HELLO MIKE"
