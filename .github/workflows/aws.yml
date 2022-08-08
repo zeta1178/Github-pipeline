@@ -41,16 +41,25 @@ jobs:
       - name: Node Install  
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "14" 
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Install dependencies
-        run: yarn
-      - name: Synth stack
-        run: yarn cdk synth
-      - name: Deploy stack
-        run: yarn cdk deploy --all --require-approval never
+#       - name: Install dependencies
+#         uses: bahmutov/npm-install@v1
+#         run: npm i -g aws-cdk && 
+#       - name: CDK Bootstrap
+#         run: cdk bootstrap
+#       - name: CDK Diff
+#         run: cdk diff
+      - name: CDK Deploy
+        run: >-
+          node_modules/.bin/cdk
+          deploy 
+          --all 
+          --require-approval never
+          --outputs-file ./cdk-outputs.json
+          && cat ./cdk-outputs.json
