@@ -32,16 +32,21 @@
 name: Run AWS CDK
 
 on: [push, workflow_dispatch]
+
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Node Install  
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14" 
+      - name: Node Install
+        run: npm install
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: "14" 
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
