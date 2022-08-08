@@ -65,7 +65,7 @@ jobs:
         run: >-
           node_modules/.bin/cdk
           deploy 
-          --all 
+#           --all 
           --require-approval never
 #           --outputs-file ./cdk-outputs.json
 #           && cat ./cdk-outputs.json
