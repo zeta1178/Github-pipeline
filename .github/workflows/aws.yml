@@ -55,6 +55,7 @@ jobs:
           pip3 install -r requirements.txt
       - name: CDK
         run: |
+          cd awscdk
           cdk bootstrap
           cdk diff
           cdk deploy --require-aproval never
