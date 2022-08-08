@@ -36,9 +36,6 @@ on: [push, workflow_dispatch]
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -52,10 +49,10 @@ jobs:
         with:
           node-version: "14"
       - run: yarn install
-      - name: CDK Bootstrap
+      - name: CDK Synth
 #         run: echo $pwd
-        run: yarn --cwd packages/infrastructure cdk bootstrap
+        run: yarn --cwd packages/bootstrap cdk synth
 #       - name: CDK Diff
 #         run: yarn --cwd packages/infrastructure cdk diff
-#       - name: CDK Deploy
-#         run: yarn --cwd packages/infrastructure cdk deploy --require-approval never
+      - name: CDK Deploy
+        run: yarn --cwd packages/bootstrap cdk deploy --require-approval never
