@@ -32,24 +32,25 @@
 name: Run AWS CDK
 
 on: [push, workflow_dispatch]
+
 jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
-        with:
-          node-version: [14.x]
-      - name: Configure aws credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Install dependencies
-        run: yarn
-      - name: Synth stack
-        run: yarn cdk synth
-      - name: Deploy stack
-        run: yarn cdk deploy --all --require-approval never
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+#       - run: yarn install
+      - name: Install CDK
+        run: |
+          npm i -g aws-cdk
+          pip3 install -r requirements.txt
+
