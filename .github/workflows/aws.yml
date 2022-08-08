@@ -50,7 +50,7 @@ jobs:
           node-version: "14"
       - run: yarn install
       - name: CDK Bootstrap
-        run: echo pwd
+        run: echo $pwd
 #         run: yarn --cwd packages/infrastructure cdk bootstrap
 #       - name: CDK Diff
 #         run: yarn --cwd packages/infrastructure cdk diff
