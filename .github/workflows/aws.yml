@@ -67,5 +67,5 @@ jobs:
           deploy 
           --all 
           --require-approval never
-          --outputs-file ./cdk-outputs.json
-          && cat ./cdk-outputs.json
+#           --outputs-file ./cdk-outputs.json
+#           && cat ./cdk-outputs.json
