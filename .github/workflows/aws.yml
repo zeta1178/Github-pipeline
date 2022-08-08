@@ -46,6 +46,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
+      - name: Node Install2    
         run: npm install  
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
